@@ -1,1 +1,6 @@
+"hello {{.CLIENTNAME}}!"
+"hello {{.USERDOMAIN}}!"
+"hello {{.COMPUTERNAME}}!"
 "hello {{.Name}}!"
+"hello {{.Name}}!"
+
