@@ -24,13 +24,11 @@ func main() {
 
 	// pull settings from the environment
 	settings := make(map[string]string)
-
 	for _, e := range os.Environ() {
 		pair := strings.Split(e, "=")
 		settings[pair[0]] = pair[1]
+		log.Println(pair[0], "=", pair[1])
 	}
-
-	log.Println(settings)
 
 	// read template file
 	t, err := template.ParseFiles(template_file)
