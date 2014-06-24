@@ -4,39 +4,30 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 )
 
 func main() {
 
 	// read arguments
-	if len(os.Args) < 4 {
-		log.Fatal("\n\n./mt.go json_settings_file template_input_file output_file\n\n")
+	if len(os.Args) < 3 {
+		log.Fatal("\n\n./mt.go template_input_file output_file\n\n")
 	}
 
-	settings_file := os.Args[1]
-	template_file := os.Args[2]
-	output_file := os.Args[3]
+	template_file := os.Args[1]
+	output_file := os.Args[2]
 
-	log.Println("settings_file =", settings_file, "template_file =", template_file, "output_file =", output_file)
+	log.Println("template_file =", template_file, "output_file =", output_file)
 
-	// read and parse the settings json file
-	settings_json, err := ioutil.ReadFile(settings_file)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Println(string(settings_json))
-
+	// pull settings from the environment
 	settings := make(map[string]string)
 
-	err = json.Unmarshal(settings_json, &settings)
-	if err != nil {
-		log.Fatal(err)
+	for _, e := range os.Environ() {
+		pair := strings.Split(e, "=")
+		settings[pair[0]] = pair[1]
 	}
 
 	log.Println(settings)
