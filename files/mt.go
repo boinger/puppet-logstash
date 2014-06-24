@@ -15,7 +15,7 @@ func main() {
 
 	// read arguments
 	if len(os.Args) < 4 {
-		log.Fatal("./make-nxlog-conf.go json_settings_file template_input_file output_file")
+		log.Fatal("\n\n./mt.go json_settings_file template_input_file output_file\n\n")
 	}
 
 	settings_file := os.Args[1]
