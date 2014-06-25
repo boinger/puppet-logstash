@@ -1,6 +1,26 @@
-"hello {{.CLIENTNAME}}!"
-"hello {{.USERDOMAIN}}!"
-"hello {{.COMPUTERNAME}}!"
-"hello {{.Name}}!"
-"hello {{.Name}}!"
+hello client {{.CLIENTNAME}}!
+I can see that your userdomain is {{.USERDOMAIN}}.
+and that you are working on {{.COMPUTERNAME}} server.
+
+The official template reference can be found here http://golang.org/pkg/text/template/
+
+The following includes a block of text based on the environment variables provided:
+
+{{ if isset .USERDOMAIN "alt" }}
+text
+block
+one
+{{ else if isset .CLIENTNAME "some_client" }}
+more text as you see fit
+{{else}}
+text
+block
+two
+{{ end }}
+
+
+
+still working on this example:
+
+{{ if and (or (isset .Params "title") (isset .Params "caption")) (isset .Params "attr")}}
 
